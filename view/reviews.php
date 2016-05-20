@@ -6,7 +6,7 @@
         <?php if ( $my_query->have_posts() ) {
             while ( $my_query->have_posts() ) : $my_query->the_post(); ?>
                 <div class="reviews__box">
-                    <iframe width="100%" height="auto" src="<?php echo get_post_meta( get_the_ID(), "place", 1 ); ?>"
+                    <iframe width="100%" height="315" src="<?php echo get_post_meta( get_the_ID(), "place", 1 ); ?>"
                             frameborder="0" allowfullscreen=""></iframe>
                 </div>
             <?php endwhile;

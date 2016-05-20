@@ -15,14 +15,9 @@
     		<ul>
                 <li><a href="#go_about" class="smoothScroll">обо мне</a></li>
     			<li><a href="#go_serv" class="smoothScroll">услуги</a></li>
-    			<li><a href="#go_store" class="smoothScroll">Магазин</a></li>
     			<li><a href="#go_materials" class="smoothScroll">бесплатные материалы</a></li>
-    			<li><a href="<?php echo get_permalink(23); ?>">форум</a></li>
     			<li><a href="#go_contacts" class="smoothScroll">КОНТАКТЫ</a></li>    			
     		</ul>
-            <a href="/cart" class="button-buy">
-                <img src="<?php bloginfo('template_directory'); ?>/img/marker20.png" alt="">
-            </a>
 			<a href="/search/" class="button-search"></a>
     	</nav>
     </header>
@@ -183,7 +178,7 @@
     </section>
 
     <?php echo do_shortcode("[reviews]");?>
-    
+
     <section class="contactme"> 
         <a id="go_contacts"></a>                       
             <h1 class="block_title">Свяжитесь со мной</h1>
