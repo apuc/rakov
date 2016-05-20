@@ -3,7 +3,7 @@
 	width: 100%;
 	position: relative;
 	height: 750px;
-	background-image: url("../img/entry-1.png");
+	background-image: url("../img/02.jpg");
 	background-repeat: no-repeat;
 	background-position: 50% 0%;
 	-webkit-background-size: 100%;
@@ -129,10 +129,10 @@
 		&--back {
 			position: absolute;
 			overflow: hidden;
-			width: 650px;
+			width: 791px;
 			height: 459px;
-			right: 5%;
-			top: -160px;
+			right: -13%;
+			top: 7px;
 			&:after {
 				content: "";
 				display: inline-block;

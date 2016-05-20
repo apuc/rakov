@@ -124,7 +124,14 @@ b {
 #bbpress-forums {
   font-family: Arial; }
 
-
+.button-buy {
+  display: inline-block;
+  background-image: url("../img/marker20.png");
+  width: 25px;
+  height: 23px;
+  margin: 0 25px; }
+  .button-buy:hover {
+    background-image: url("../img/marker20-1.png"); }
 
 .button-search {
   display: inline-block;
@@ -136,15 +143,12 @@ b {
 
 .button-buy {
   display: inline-block;
-  color: white;
-  font-size: 25px;
-  width: 65px;
+  background-image: url("../img/marker20.png");
+  width: 25px;
   height: 23px;
-  margin: 0 25px;
-  text-decoration: none;}
-.button-buy:hover{
-  color: #38BBDD;
-}
+  margin: 0 25px; }
+  .button-buy:hover {
+    background-image: url("../img/marker20-1.png"); }
 
 .button-search {
   display: inline-block;
@@ -281,7 +285,7 @@ textarea#bbp_topic_content {
   width: 100%;
   position: relative;
   height: 750px;
-  background-image: url("../img/entry-1.png");
+  background-image: url("../img/02.jpg");
   background-repeat: no-repeat;
   background-position: 50% 0%;
   -webkit-background-size: 100%;
@@ -301,7 +305,7 @@ textarea#bbp_topic_content {
       margin-bottom: 0;
       letter-spacing: 2px; }
     .entry__text h3 {
-      /*font-family: "BebasNeue_Light";*/
+      font-family: "BebasNeue_Light";
       font-size: 40px;
       text-align: right;
       margin: 0 0 10px 0; }
@@ -332,13 +336,10 @@ textarea#bbp_topic_content {
       color: #2c2d37;
       font-size: 30px;
       margin: 20px 0; }
-    .aboutme__text b {
-      font-family: "Arial";
-    }
     .aboutme__text p {
       color: #4f4f51;
       font-size: 16px;
-      font-family: "Arial";
+      font-family: "BebasNeue_Book";
       font-weight: bold; }
     .aboutme__text a {
       display: block;
@@ -401,10 +402,10 @@ textarea#bbp_topic_content {
     .aboutme__photo--back {
       position: absolute;
       overflow: hidden;
-      width: 650px;
+      width: 791px;
       height: 459px;
-      right: 5%;
-      top: -160px; }
+      right: -13%;
+      top: 7px; }
       .aboutme__photo--back:after {
         content: "";
         display: inline-block;
@@ -492,8 +493,9 @@ textarea#bbp_topic_content {
     position: relative;
     width: 18%;
     margin: 0 1%;
-    height: 430px;
+    height: 380px;
     overflow: hidden;
+    text-align: center;
     word-spacing: nowrap;
     vertical-align: middle;
     z-index: 0; }
@@ -503,18 +505,12 @@ textarea#bbp_topic_content {
       height: 100%;
       vertical-align: middle; }
     .store__box img {
-      height: 100%;
-      width: 100%;
       vertical-align: middle; }
     .store__box--text {
-		max-height: 285px;
-		overflow: hidden;
       position: absolute;
       display: block;
-      top: 95px;
+      top: 150px;
       z-index: 9;
-      opacity: 0.5;
-      background-color: black;
       padding: 0 10px; }
       .store__box--text h4 {
         color: #FFF;
@@ -528,10 +524,9 @@ textarea#bbp_topic_content {
         font-size: 16px;
         text-align: left; }
     .store__box--price {
-      z-index: 9;
       display: block;
       position: absolute;
-      bottom: 50px;
+      bottom: 0;
       width: 100%;
       background: rgba(0, 0, 0, 0.4);
       height: 64px;
@@ -573,35 +568,7 @@ textarea#bbp_topic_content {
         background: url("../img/Layer-4.png") -8px -9px; }
   .store a:hover .store__box--price, .materials a:hover .store__box--price, .store a:hover .store__box--stars, .materials a:hover .store__box--stars {
     opacity: 1; }
-.store__box--block{
-  text-align: center;
-  height: 380px;
-  top: 0;
-}
-.store__box--more{
-  width: 80px;
-  bottom: 0;
-  display: block;
-  margin: 10px auto;
-}
-.single__buttons{
-  text-align: center;
-}
-.store-single{
-  padding: 30px;
-}
-.store-single-text{
-  color: #4f4f51;
-  font-size: 16px;
-  font-family: "Arial";
-  font-weight: bold;
-  margin: 20px 0;
-}
-.single__buttons a{
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 0 10px;
-}
+
 .materials {
   padding-top: 0; }
   .materials h2 {
@@ -731,7 +698,7 @@ textarea#bbp_topic_content {
       -o-transition: all 0.3s linear;
       transition: all 0.3s linear;
       border: 1px solid #43D9E5;
-      margin: 44px 2% 20px 0;
+      margin: 20px 2% 20px 0;
       font-size: 15px;
       outline: none;
       color: #525252;
