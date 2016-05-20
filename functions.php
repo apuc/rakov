@@ -3,6 +3,7 @@
 define('WRITE_THEME_DIR', plugin_dir_path(__FILE__));
 define('WRITE_THEME_URL', plugin_dir_url(__FILE__));
 
+//require_once(WRITE_THEME_DIR."lib/Parser.php");
 require_once(WRITE_THEME_DIR."lib/Parser_write_theme.php");
 require_once( WRITE_THEME_DIR . "lib/Parser.php" );
 require_once(WRITE_THEME_DIR."lib/Write_theme.php");
@@ -1070,6 +1071,63 @@ function set_free_order(){
     setcookie("cartCookie", "", time()+86400,'/');
     die();
 }
+
+/*---------------------------------------------— НАМ ДОВЕРЯЮТ —------------------------------------------------------*/
+/*add_action('init', 'myCustomInitMaterials');
+
+function myCustomInitMaterials()
+{
+    $labels = array(
+        'name' => 'Бесплатные материалы', // Основное название типа записи
+        'singular_name' => 'Бесплатные материалы', // отдельное название записи типа Book
+        'add_new' => 'Добавить материал',
+        'add_new_item' => 'Добавить новый материал',
+        'edit_item' => 'Редактировать материал',
+        'new_item' => 'Новый материал',
+        'view_item' => 'Посмотреть материал',
+        'search_items' => 'Найти материал',
+        'not_found' => 'Материалов не найдено',
+        'not_found_in_trash' => 'В корзине материалов не найдено',
+        'parent_item_colon' => '',
+        'menu_name' => 'Бесплатные материалы'
+
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array('title', 'thumbnail')
+    );
+    register_post_type('materials', $args);
+}
+
+
+function partnersShortcode()
+{
+    $args = array(
+        'post_type' => 'materials',
+        'post_status' => 'publish',
+        'posts_per_page' => 3
+    );
+
+    $my_query = null;
+    $my_query = new WP_Query($args);
+
+    $parser = new Parser();
+    $parser->render(TM_DIR . '/views/freestoretpl.php', ['my_query' => $my_query]);
+
+}
+
+add_shortcode('partners', 'partnersShortcode');*/
+/*---------------------------------------------— КОНЕЦ НАМ ДОВЕРЯЮТ —------------------------------------------------------*/
 
 /*------------------------------------------------ REVIEWS -----------------------------------------------------------*/
 

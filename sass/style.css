@@ -509,11 +509,12 @@ textarea#bbp_topic_content {
     .store__box--text {
       position: absolute;
       display: block;
-      top: 150px;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 9;
       padding: 0 10px; }
       .store__box--text h4 {
-        color: #FFF;
+        color: #000000;
         font-size: 30px;
         font-family: "BebasNeue_Bold";
         text-align: left;
@@ -568,6 +569,12 @@ textarea#bbp_topic_content {
         background: url("../img/Layer-4.png") -8px -9px; }
   .store a:hover .store__box--price, .materials a:hover .store__box--price, .store a:hover .store__box--stars, .materials a:hover .store__box--stars {
     opacity: 1; }
+
+.store__flex {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; }
 
 .materials {
   padding-top: 0; }
