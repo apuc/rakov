@@ -1,0 +1,145 @@
+.search_input {
+    width: 80%;
+    height: 40px;
+    font-size: 30px;
+    border-radius: 7px;
+    border: 1px solid #2B353A;
+    font-family: "BebasNeue_Book";
+    padding-left: 10px;
+}
+
+.search_btn {
+    width: 15%;
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid #2B353A;
+    font-size: 30px;
+    font-family: "BebasNeue_Book";
+}
+
+.searchTitle {
+    font-size: 25px;
+    text-align: center;
+    margin: 20px 0 20px 0;
+}
+
+.searchItem {
+    margin: 15px 0 15px 0;
+    border: 1px solid #2B353A;
+    padding: 20px;
+}
+
+.searchItemTitle {
+    font-size: 20px;
+}
+
+.searchResultBox {
+    min-height: 300px;
+}
+
+.text-input {
+    width: 50%;
+    height: 30px;
+    font-size: 20px;
+    padding-left: 10px;
+    border: 1px solid #2B353A;
+    border-radius: 6px;
+}
+
+.wppb-form-field {
+    margin: 20px 0 0 0;
+}
+
+.wppb-form-field label {
+    font-size: 20px;
+    width: 20%;
+    display: block;
+}
+
+.wppb-send-credentials-checkbox label {
+    width: 80%;
+}
+
+#register {
+    padding: 4px;
+    margin: 20px 0 0 0;
+}
+
+.empty-cart{
+    text-align: center;
+}
+
+.empty-cart a{
+    text-decoration: none;
+}
+
+.modal-title{
+    text-align: center;
+}
+
+.gonext h4{
+    padding-left: 20px;
+}
+
+.goorder h4{
+    padding-right: 20px;
+}
+
+.input-group{
+    padding: 0 20px;
+}
+
+.modal-body{
+    text-align: center;
+}
+
+.order-page-thumb img{
+    width: 130px;
+    height: 200px;
+}
+
+.orderWrap {
+    height: 500px;
+    width: 100%;
+}
+
+.orderPay {
+    width: 60%;
+    height: 120px;
+    margin: 100px auto;
+    border: 1px solid #2B353A;
+    padding: 20px;
+}
+
+.sbmLabel {
+    font-size: 20px;
+    padding-right: 30px;
+}
+
+.orderId {
+    font-size: 20px;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+}
+
+#sbm {
+    margin-bottom: 7px;
+}
+
+.contactinfo__block a{
+    float: left;
+    line-height: 45px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 50%;
+    color: #2B353A;
+}
+
+.contactinfo__block a i{
+    font-size: 20px;
+}
+
+#subscription-toggle {
+    margin-left: 10px;
+}
