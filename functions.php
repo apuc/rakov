@@ -626,18 +626,6 @@ add_action('customize_register', function($customizer){
         'phone_textbox',
         array('default' => '(416) 555-5252')
     );
-    $customizer->add_setting(
-        'watsup_textbox',
-        array( 'default' => '+7 (931) 321-37-78' )
-    );
-    $customizer->add_control(
-        'watsup_textbox',
-        array(
-            'label'   => 'Watsup',
-            'section' => 'contacts_section',
-            'type'    => 'text',
-        )
-    );
     $customizer->add_control(
         'phone_textbox',
         array(

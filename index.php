@@ -203,8 +203,8 @@
 
                 <div class="row">
                     <p class="phone_number"><?php echo get_theme_mod('phone_textbox'); ?></p>
-                    <p class="phone_number"><?php echo get_theme_mod( 'watsup_textbox' ); ?></p>
                     <p class="email_adress"><?php echo get_theme_mod('email_textbox'); ?></p>
+                    <p>Сайт: 1r1.ru</p>
                 </div>
 
             </div>
