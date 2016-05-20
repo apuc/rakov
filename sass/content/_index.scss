@@ -441,11 +441,13 @@
 		display: block;
 		float: left;
 		position: relative;
-		width: 85%;
+		width: 75%;
+		float: none;
+   		margin: auto;
 		&--input {
 			display: block;
 			float: left;
-			width: 44%;
+			width: 45%;
 			height: 36px;
 			line-height: 36px;
 			padding: 5px 8px;
@@ -462,7 +464,7 @@
 			display: block;
 			float: left;
 			width: 94%;
-			height: 36px;
+			height: 70px;
 			line-height: 36px;
 			margin: 20px 2%;
 			padding: 5px 8px;
@@ -483,7 +485,7 @@
 			background-color: rgba(255, 255, 255, 0);
 			@include transition(0.3s);
 			border: 1px solid #43D9E5;
-			margin: 20px 2% 20px 0;
+			margin: 20px 4% 20px 0;
 			font-size: 15px;
 			outline: none;
 			color: #525252;
