@@ -183,6 +183,7 @@
     </section>
 
     <?php echo do_shortcode("[reviews]");?>
+    
     <section class="contactme"> 
         <a id="go_contacts"></a>                       
             <h1 class="block_title">Свяжитесь со мной</h1>

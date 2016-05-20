@@ -4,6 +4,7 @@ define('WRITE_THEME_DIR', plugin_dir_path(__FILE__));
 define('WRITE_THEME_URL', plugin_dir_url(__FILE__));
 
 require_once(WRITE_THEME_DIR."lib/Parser_write_theme.php");
+require_once( WRITE_THEME_DIR . "lib/Parser.php" );
 require_once(WRITE_THEME_DIR."lib/Write_theme.php");
 
 define('TM_DIR', get_template_directory(__FILE__));
@@ -23,6 +24,11 @@ function add_script_wt(){
     wp_enqueue_script( 'my-bootstrap-extension', get_template_directory_uri() . '/js/bootstrap.js', array(), '1');
     wp_enqueue_script( 'my-script', get_template_directory_uri() . '/js/script.js', array(), '1');
     wp_enqueue_script( 'fotorama-js', get_template_directory_uri() . '/js/fotorama.js', array(), '1');
+    wp_localize_script( 'my-script', 'ajaxurl',
+        array(
+            'url' => admin_url( 'admin-ajax.php' )
+        )
+    );
 
 }
 
@@ -463,74 +469,81 @@ function service_sc(){
 }
 add_shortcode('service', 'service_sc');
 
-//function write_menu_page(){
-//    add_menu_page( 'Добавить отзыв', 'Добавить отзыв', 'administrator', 'write_reviews', 'write_reviews_admin_page' );
-//}
-//
-//add_action('admin_menu', 'write_menu_page');
-//
-//function write_reviews_admin_page(){
-//    $parser = new Parser_write_theme();
-//    if(isset($_GET['action'])) {
-//        if ($_GET['action'] == 'add_reviews') {
-//            $parser->parse(WRITE_THEME_DIR . "/view/add_reviews_view.php", array(), true);
-//        }
-//
-//        if ($_GET['action'] == 'del') {
-//            $gen =new write_theme();
-//            $del = $gen->delete_reviews($_GET['id']);
-//            print_reviews();
-//        }
-//    }
-//    else{
-//        if (isset($_POST['reviews'])){
-//            $gen = new write_theme();
-//            $gen->add_reviews($_POST);
-//        }
-//
-//        echo print_reviews();
-//    }
-//}
-//
-//function print_reviews(){
-//    $parser = new Parser_write_theme();
-//    $gen =new write_theme();
-//    $res = $gen->get_reviews();
-//    $data['reviews'] = "";
-//    foreach ($res as $v) {
-//        $data['reviews'] .= $parser->parse(WRITE_THEME_DIR."/view/reviews_box_view.php",array('text' => $v->text_reviews,'fio' => $v->fio,'name' => $v->name,'link' => $v->link,'id' => $v->id_reviews), false);
-//    }
-//
-//    $parser->parse(WRITE_THEME_DIR."/view/reviews_view.php",$data, true);
-//}
-//
-//function reviews_home_short(){
-//    $parser = new Parser_write_theme();
-//    $gen =new write_theme();
-//    $html = '<section class="reviews">
-//    <div class="contain">
-//        <div class="reviews__arrow"></div>
-//        <h1 class="block_title">ОТЗЫВЫ</h1>';
-//    $res = $gen->get_reviews();
-//        foreach($res as $r){
-//            $html .='<div class="reviews__box">
-//            <p>'.$r->text_reviews.'</p>
-//            <div class="reviews__box--author">
-//                <div class="reviews__box--author-img">
-//                    <img src="'.$r->link.'">
-//                </div>
-//                <h4>'.$r->fio.'</h4>
-//                <p>'.$r->name.'</p>
-//            </div>
-//        </div>';
-//        }
-//    $html .= '</div>
-//            </section>';
-//   return $html;
-//
-//
-//}
-//add_shortcode('reviews','reviews_home_short');
+function write_menu_page() {
+    add_menu_page( 'Добавить отзыв', 'Добавить отзыв', 'administrator', 'write_reviews', 'write_reviews_admin_page' );
+}
+
+add_action( 'admin_menu', 'write_menu_page' );
+
+function write_reviews_admin_page() {
+    $parser = new Parser_write_theme();
+    if ( isset( $_GET['action'] ) ) {
+        if ( $_GET['action'] == 'add_reviews' ) {
+            $parser->parse( WRITE_THEME_DIR . "/view/add_reviews_view.php", array(), true );
+        }
+
+        if ( $_GET['action'] == 'del' ) {
+            $gen = new write_theme();
+            $del = $gen->delete_reviews( $_GET['id'] );
+            print_reviews();
+        }
+    } else {
+        if ( isset( $_POST['reviews'] ) ) {
+            $gen = new write_theme();
+            $gen->add_reviews( $_POST );
+        }
+
+        echo print_reviews();
+    }
+}
+
+function print_reviews() {
+    $parser          = new Parser_write_theme();
+    $gen             = new write_theme();
+    $res             = $gen->get_reviews();
+    $data['reviews'] = "";
+    foreach ( $res as $v ) {
+        $data['reviews'] .= $parser->parse( WRITE_THEME_DIR . "/view/reviews_box_view.php", array(
+            'text' => $v->text_reviews,
+            'fio'  => $v->fio,
+            'name' => $v->name,
+            'link' => $v->link,
+            'id'   => $v->id_reviews
+        ), false );
+    }
+
+    $parser->parse( WRITE_THEME_DIR . "/view/reviews_view.php", $data, true );
+}
+
+function reviews_home_short() {
+    $parser = new Parser_write_theme();
+    $gen    = new write_theme();
+    $html   = '<section class="reviews">
+    <div class="contain">
+        <div class="reviews__arrow"></div>
+        <h1 class="block_title">ОТЗЫВЫ</h1>';
+    $res    = $gen->get_reviews();
+    foreach ( $res as $r ) {
+        $html .= '<div class="reviews__box">
+            <p>' . $r->text_reviews . '</p>
+            <div class="reviews__box--author">
+                <div class="reviews__box--author-img">
+                    <img src="' . $r->link . '">
+                </div>
+                <h4>' . $r->fio . '</h4>
+                <p>' . $r->name . '</p>
+            </div>
+        </div>';
+    }
+    $html .= '</div>
+            </section>';
+
+    return $html;
+
+
+}
+
+add_shortcode( '1reviews', 'reviews_home_short' );
 
 //Поиск по сайту
 function search_function(){
@@ -1090,7 +1103,7 @@ function myCustomInitReviews() {
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => null,
-        'supports'           => array()
+        'supports'           => array( 'title' )
     );
     register_post_type( 'reviews', $args );
 }
@@ -1106,7 +1119,7 @@ function reviewShortcode() {
     $my_query = new WP_Query( $args );
 
     $parser = new Parser();
-    $parser->render( TM_DIR . '/view/reviews.php', [ 'my_query' => $my_query ] );
+    $parser->render( WRITE_THEME_DIR . '/view/reviews.php', [ 'my_query' => $my_query ] );
 }
 
 add_shortcode( 'reviews', 'reviewShortcode' );

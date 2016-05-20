@@ -77,11 +77,11 @@ $(document).ready(function(){
     $('.search_btn').on('click', function(){
         var s = $('.search_input').val();
         $.ajax({
-            url: ajaxurl, //url, к которому обращаемся
+            url: ajaxurl.url, //url, к которому обращаемся
             type: "POST",
             data: "action=get_search&s=" +s, //данные, которые передаем. Обязательно для action указываем имя нашего хука
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 $('.searchResultBox').html(data);
             }
         });
@@ -91,7 +91,7 @@ $(document).ready(function(){
         if(e.which == 13) {
             var s = $('.search_input').val();
             $.ajax({
-                url: ajaxurl, //url, к которому обращаемся
+                url: ajaxurl.url, //url, к которому обращаемся
                 type: "POST",
                 data: "action=get_search&s=" +s, //данные, которые передаем. Обязательно для action указываем имя нашего хука
                 success: function(data){
@@ -105,13 +105,13 @@ $(document).ready(function(){
 
     $(document).on('click', '.buy-but', function(){
         id = $(this).attr('data-item');
-        console.log(id);
+        // console.log(id);
         $.ajax({
-            url: ajaxurl, //url, к которому обращаемся
+            url: ajaxurl.url, //url, к которому обращаемся
             type: "POST",
             data: "action=add_to_cart&id=" +id, //данные, которые передаем. Обязательно для action указываем имя нашего хука
             success: function(data){
-                console.log(data);
+                //console.log(data);
             }
         });
         return false;
@@ -124,7 +124,7 @@ $(document).ready(function(){
         var address = $('input[name="order-address"]').val();
 
         $.ajax({
-            url: ajaxurl, //url, к которому обращаемся
+            url: ajaxurl.url, //url, к которому обращаемся
             type: "POST",
             data: "action=order&name="+name+"&mail="+mail+"&phone="+phone+"&address="+address, //данные, которые передаем. Обязательно для action указываем имя нашего хука
             success: function(data){
@@ -139,7 +139,7 @@ $(document).ready(function(){
         var delId = block.attr('data-id');
 
         $.ajax({
-            url: ajaxurl, //url, к которому обращаемся
+            url: ajaxurl.url, //url, к которому обращаемся
             type: "POST",
             data: "action=del_from_cart&id=" +delId, //данные, которые передаем. Обязательно для action указываем имя нашего хука
             success: function(data){
@@ -152,11 +152,11 @@ $(document).ready(function(){
     });
 
     $.ajax({
-        url: ajaxurl, //url, к которому обращаемся
+        url: ajaxurl.url, //url, к которому обращаемся
         type: "POST",
         data: "action=get_count", //данные, которые передаем. Обязательно для action указываем имя нашего хука
         success: function(data){
-            console.log(data);
+            //console.log(data);
             if(data != ''){
                 $('.button-buy').append(' ('+data+') ');
             }
@@ -174,7 +174,7 @@ $(document).ready(function(){
         var mail = $('input[name="order-mail"]').val();
 
         $.ajax({
-            url: ajaxurl, //url, к которому обращаемся
+            url: ajaxurl.url, //url, к которому обращаемся
             type: "POST",
             data: "action=freeorder&name="+name+"&mail="+mail+"&id="+id, //данные, которые передаем. Обязательно для action указываем имя нашего хука
             success: function(data){
