@@ -33,15 +33,6 @@ function add_script_wt(){
 
 }
 
-function add_admin_script(){
-    //wp_enqueue_script('admin',get_template_directory_uri() . '/js/admin.js', array(), '1');
-    wp_enqueue_style( 'my-bootstrap-extension-admin', get_template_directory_uri() . '/css/bootstrap.css', array(), '1');
-    //wp_enqueue_style( 'my-style-admin', get_template_directory_uri() . '/css/admin.css', array(), '1');
-
-}
-
-add_action('admin_enqueue_scripts', 'add_admin_script');
-
 add_action( 'wp_enqueue_scripts', 'add_style_wt' );
 add_action( 'wp_enqueue_scripts', 'add_script_wt' );
 

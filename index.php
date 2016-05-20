@@ -175,12 +175,8 @@
         <a id="go_contacts"></a>                       
             <h1 class="block_title">Свяжитесь со мной</h1>
             <div class="contactme__form">
-                <?php echo do_shortcode("[contact-form-7 id='5' title='form']"); ?>
-                <? do_shortcode("[bbp-forum-index]");?>
+                <?php echo do_shortcode( "[contact-form-7 id='17' title='form']" ); ?>
             </div>
-            <div class="contactme__forum">
-                <a href="<?php echo get_permalink(23); ?>">перейти на форум</a>
-            </div>        
     </section>
     
     <section class="contactinfo">
