@@ -1,5 +1,4 @@
-﻿﻿<!DOCTYPE html>
-<html>
+﻿<html>
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +15,12 @@
                 <li><a href="#go_about" class="smoothScroll">обо мне</a></li>
     			<li><a href="#go_serv" class="smoothScroll">услуги</a></li>
     			<li><a href="#go_materials" class="smoothScroll">бесплатные материалы</a></li>
-    			<li><a href="#go_contacts" class="smoothScroll">КОНТАКТЫ</a></li>    			
+    			<li><a href="#go_contacts" class="smoothScroll">КОНТАКТЫ</a></li>
     		</ul>
 			<a href="/search/" class="button-search"></a>
     	</nav>
     </header>
-                              
+
     <section class="entry">
     	<div class="entry__text">
     		<h1>Павел Раков</h1>
@@ -72,7 +71,7 @@
             </div>
         </div>
     </section>
-   
+
     <section class="services">
       <a id="go_serv"></a>
         <div class="services__arrow"></div>
@@ -179,8 +178,8 @@
 
     <?php echo do_shortcode("[reviews]");?>
 
-    <section class="contactme"> 
-        <a id="go_contacts"></a>                       
+    <section class="contactme">
+        <a id="go_contacts"></a>
             <h1 class="block_title">Свяжитесь со мной</h1>
             <div class="contactme__form">
                 <?php echo do_shortcode("[contact-form-7 id='5' title='form']"); ?>
@@ -188,9 +187,9 @@
             </div>
             <div class="contactme__forum">
                 <a href="<?php echo get_permalink(23); ?>">перейти на форум</a>
-            </div>        
+            </div>
     </section>
-    
+
     <section class="contactinfo">
         <div class="contain">
             <div class="contactinfo__block">
@@ -217,7 +216,7 @@
             </div>
         </div>
     </section>
-    
+
     <footer class="footer">
         <h5>© 2015 - Все права защищены</h5>
     </footer>

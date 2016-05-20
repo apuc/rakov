@@ -108,7 +108,7 @@ function about_me(){
     }
 
     $curr_photos = $wpdb->get_results( "SELECT * FROM `about_me`");
-    
+
     //prn($curr_photos);
     //prn($curr_text);
 
@@ -142,12 +142,12 @@ function about_me(){
     $generate = '';
     $generate2 = '';
 
-    $texts = $wpdb->get_results("SELECT * FROM `about_me-text`"); 
+    $texts = $wpdb->get_results("SELECT * FROM `about_me-text`");
 
     foreach ($texts as $text) {
         $generate2 .= "
                 <p><b>Текущий текст:</b><br>$text->txt</p>
-                <p><b>Ссылка кнопки 'Узнать больше':</b><br> <a href='#'>$text->link</a></p> 
+                <p><b>Ссылка кнопки 'Узнать больше':</b><br> <a href='#'>$text->link</a></p>
         </tr>";
     }
 
