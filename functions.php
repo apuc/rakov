@@ -33,15 +33,6 @@ function add_script_wt(){
 
 }
 
-function add_admin_script(){
-    //wp_enqueue_script('admin',get_template_directory_uri() . '/js/admin.js', array(), '1');
-    wp_enqueue_style( 'my-bootstrap-extension-admin', get_template_directory_uri() . '/css/bootstrap.css', array(), '1');
-    //wp_enqueue_style( 'my-style-admin', get_template_directory_uri() . '/css/admin.css', array(), '1');
-
-}
-
-add_action('admin_enqueue_scripts', 'add_admin_script');
-
 add_action( 'wp_enqueue_scripts', 'add_style_wt' );
 add_action( 'wp_enqueue_scripts', 'add_script_wt' );
 
@@ -274,8 +265,6 @@ function store_sc(){
 }
 add_shortcode('store', 'store_sc');
 
-
-
 //Бесплатные материаы (админка)
 /*function free_book(){
     global $wpdb;
@@ -470,84 +459,8 @@ function service_sc(){
 }
 add_shortcode('service', 'service_sc');
 
-function write_menu_page() {
-    add_menu_page( 'Добавить отзыв', 'Добавить отзыв', 'administrator', 'write_reviews', 'write_reviews_admin_page' );
-}
-
-add_action( 'admin_menu', 'write_menu_page' );
-
-function write_reviews_admin_page() {
-    $parser = new Parser_write_theme();
-    if ( isset( $_GET['action'] ) ) {
-        if ( $_GET['action'] == 'add_reviews' ) {
-            $parser->parse( WRITE_THEME_DIR . "/view/add_reviews_view.php", array(), true );
-        }
-
-        if ( $_GET['action'] == 'del' ) {
-            $gen = new write_theme();
-            $del = $gen->delete_reviews( $_GET['id'] );
-            print_reviews();
-        }
-    } else {
-        if ( isset( $_POST['reviews'] ) ) {
-            $gen = new write_theme();
-            $gen->add_reviews( $_POST );
-        }
-
-        echo print_reviews();
-    }
-}
-
-function print_reviews() {
-    $parser          = new Parser_write_theme();
-    $gen             = new write_theme();
-    $res             = $gen->get_reviews();
-    $data['reviews'] = "";
-    foreach ( $res as $v ) {
-        $data['reviews'] .= $parser->parse( WRITE_THEME_DIR . "/view/reviews_box_view.php", array(
-            'text' => $v->text_reviews,
-            'fio'  => $v->fio,
-            'name' => $v->name,
-            'link' => $v->link,
-            'id'   => $v->id_reviews
-        ), false );
-    }
-
-    $parser->parse( WRITE_THEME_DIR . "/view/reviews_view.php", $data, true );
-}
-
-function reviews_home_short() {
-    $parser = new Parser_write_theme();
-    $gen    = new write_theme();
-    $html   = '<section class="reviews">
-    <div class="contain">
-        <div class="reviews__arrow"></div>
-        <h1 class="block_title">ОТЗЫВЫ</h1>';
-    $res    = $gen->get_reviews();
-    foreach ( $res as $r ) {
-        $html .= '<div class="reviews__box">
-            <p>' . $r->text_reviews . '</p>
-            <div class="reviews__box--author">
-                <div class="reviews__box--author-img">
-                    <img src="' . $r->link . '">
-                </div>
-                <h4>' . $r->fio . '</h4>
-                <p>' . $r->name . '</p>
-            </div>
-        </div>';
-    }
-    $html .= '</div>
-            </section>';
-
-    return $html;
-
-
-}
-
-add_shortcode( '1reviews', 'reviews_home_short' );
-
 //Поиск по сайту
-function search_function(){
+/*function search_function(){
     $parser = new Parser_write_theme();
     if(isset($_POST['s'])){
         $parser->render(WRITE_THEME_DIR."/view/search_result.php",[]);
@@ -555,9 +468,9 @@ function search_function(){
     else {
         $parser->render(WRITE_THEME_DIR."/view/search_page.php",[]);
     }
-}
+}*/
 
-function getSearch(){
+/*function getSearch(){
     global $wpdb;
     $parser = new Parser_write_theme();
 
@@ -568,7 +481,7 @@ function getSearch(){
 
     $parser->render(WRITE_THEME_DIR."/view/search_result.php",['result' => $result]);
     die();
-}
+}*/
 
 add_shortcode('search','search_function');
 add_action('wp_ajax_nopriv_get_search', 'getSearch');

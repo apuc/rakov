@@ -74,35 +74,6 @@ $(document).ready(function(){
 
     var id;
 
-    $('.search_btn').on('click', function(){
-        var s = $('.search_input').val();
-        $.ajax({
-            url: ajaxurl.url, //url, к которому обращаемся
-            type: "POST",
-            data: "action=get_search&s=" +s, //данные, которые передаем. Обязательно для action указываем имя нашего хука
-            success: function(data){
-                // console.log(data);
-                $('.searchResultBox').html(data);
-            }
-        });
-    });
-
-    $(document).keypress(function(e) {
-        if(e.which == 13) {
-            var s = $('.search_input').val();
-            $.ajax({
-                url: ajaxurl.url, //url, к которому обращаемся
-                type: "POST",
-                data: "action=get_search&s=" +s, //данные, которые передаем. Обязательно для action указываем имя нашего хука
-                success: function(data){
-                    /*console.log(data);*/
-                    $('.searchResultBox').html(data);
-                }
-            });
-        }
-
-    });
-
     $(document).on('click', '.buy-but', function(){
         id = $(this).attr('data-item');
         // console.log(id);
@@ -132,36 +103,6 @@ $(document).ready(function(){
                 $('#ok-modal').modal('show');
             }
         });
-    });
-
-    $(document).on('click', '.delete-from-cart', function(){
-        var block = $(this).parent().parent().parent();
-        var delId = block.attr('data-id');
-
-        $.ajax({
-            url: ajaxurl.url, //url, к которому обращаемся
-            type: "POST",
-            data: "action=del_from_cart&id=" +delId, //данные, которые передаем. Обязательно для action указываем имя нашего хука
-            success: function(data){
-                // console.log(data);
-                block.remove();
-                location.reload();
-            }
-        });
-
-    });
-
-    $.ajax({
-        url: ajaxurl.url, //url, к которому обращаемся
-        type: "POST",
-        data: "action=get_count", //данные, которые передаем. Обязательно для action указываем имя нашего хука
-        success: function(data){
-            //console.log(data);
-            if(data != ''){
-                $('.button-buy').append(' ('+data+') ');
-            }
-
-        }
     });
 
     $(document).on('click', '.buy-free-but', function(){

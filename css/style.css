@@ -143,3 +143,18 @@
 #subscription-toggle {
     margin-left: 10px;
 }
+
+.reviews__box {
+    padding: 20px;
+}
+
+.store__flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.contactinfo__block a {
+    padding: 10px;
+}
