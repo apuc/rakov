@@ -463,74 +463,74 @@ function service_sc(){
 }
 add_shortcode('service', 'service_sc');
 
-function write_menu_page(){
-    add_menu_page( 'Добавить отзыв', 'Добавить отзыв', 'administrator', 'write_reviews', 'write_reviews_admin_page' );
-}
-
-add_action('admin_menu', 'write_menu_page');
-
-function write_reviews_admin_page(){
-    $parser = new Parser_write_theme();
-    if(isset($_GET['action'])) {
-        if ($_GET['action'] == 'add_reviews') {
-            $parser->parse(WRITE_THEME_DIR . "/view/add_reviews_view.php", array(), true);
-        }
-
-        if ($_GET['action'] == 'del') {
-            $gen =new write_theme();
-            $del = $gen->delete_reviews($_GET['id']);
-            print_reviews();
-        }
-    }
-    else{
-        if (isset($_POST['reviews'])){
-            $gen = new write_theme();
-            $gen->add_reviews($_POST);
-        }
-
-        echo print_reviews();
-    }
-}
-
-function print_reviews(){
-    $parser = new Parser_write_theme();
-    $gen =new write_theme();
-    $res = $gen->get_reviews();
-    $data['reviews'] = "";
-    foreach ($res as $v) {
-        $data['reviews'] .= $parser->parse(WRITE_THEME_DIR."/view/reviews_box_view.php",array('text' => $v->text_reviews,'fio' => $v->fio,'name' => $v->name,'link' => $v->link,'id' => $v->id_reviews), false);
-    }
-
-    $parser->parse(WRITE_THEME_DIR."/view/reviews_view.php",$data, true);
-}
-
-function reviews_home_short(){
-    $parser = new Parser_write_theme();
-    $gen =new write_theme();
-    $html = '<section class="reviews">
-    <div class="contain">
-        <div class="reviews__arrow"></div>
-        <h1 class="block_title">ОТЗЫВЫ</h1>';
-    $res = $gen->get_reviews();
-        foreach($res as $r){
-            $html .='<div class="reviews__box">
-            <p>'.$r->text_reviews.'</p>
-            <div class="reviews__box--author">
-                <div class="reviews__box--author-img">
-                    <img src="'.$r->link.'">
-                </div>
-                <h4>'.$r->fio.'</h4>
-                <p>'.$r->name.'</p>
-            </div>
-        </div>';
-        }
-    $html .= '</div>
-            </section>';
-   return $html;
-
-
-}
-add_shortcode('reviews','reviews_home_short');
+//function write_menu_page(){
+//    add_menu_page( 'Добавить отзыв', 'Добавить отзыв', 'administrator', 'write_reviews', 'write_reviews_admin_page' );
+//}
+//
+//add_action('admin_menu', 'write_menu_page');
+//
+//function write_reviews_admin_page(){
+//    $parser = new Parser_write_theme();
+//    if(isset($_GET['action'])) {
+//        if ($_GET['action'] == 'add_reviews') {
+//            $parser->parse(WRITE_THEME_DIR . "/view/add_reviews_view.php", array(), true);
+//        }
+//
+//        if ($_GET['action'] == 'del') {
+//            $gen =new write_theme();
+//            $del = $gen->delete_reviews($_GET['id']);
+//            print_reviews();
+//        }
+//    }
+//    else{
+//        if (isset($_POST['reviews'])){
+//            $gen = new write_theme();
+//            $gen->add_reviews($_POST);
+//        }
+//
+//        echo print_reviews();
+//    }
+//}
+//
+//function print_reviews(){
+//    $parser = new Parser_write_theme();
+//    $gen =new write_theme();
+//    $res = $gen->get_reviews();
+//    $data['reviews'] = "";
+//    foreach ($res as $v) {
+//        $data['reviews'] .= $parser->parse(WRITE_THEME_DIR."/view/reviews_box_view.php",array('text' => $v->text_reviews,'fio' => $v->fio,'name' => $v->name,'link' => $v->link,'id' => $v->id_reviews), false);
+//    }
+//
+//    $parser->parse(WRITE_THEME_DIR."/view/reviews_view.php",$data, true);
+//}
+//
+//function reviews_home_short(){
+//    $parser = new Parser_write_theme();
+//    $gen =new write_theme();
+//    $html = '<section class="reviews">
+//    <div class="contain">
+//        <div class="reviews__arrow"></div>
+//        <h1 class="block_title">ОТЗЫВЫ</h1>';
+//    $res = $gen->get_reviews();
+//        foreach($res as $r){
+//            $html .='<div class="reviews__box">
+//            <p>'.$r->text_reviews.'</p>
+//            <div class="reviews__box--author">
+//                <div class="reviews__box--author-img">
+//                    <img src="'.$r->link.'">
+//                </div>
+//                <h4>'.$r->fio.'</h4>
+//                <p>'.$r->name.'</p>
+//            </div>
+//        </div>';
+//        }
+//    $html .= '</div>
+//            </section>';
+//   return $html;
+//
+//
+//}
+//add_shortcode('reviews','reviews_home_short');
 
 //Поиск по сайту
 function search_function(){
@@ -1057,3 +1057,92 @@ function set_free_order(){
     setcookie("cartCookie", "", time()+86400,'/');
     die();
 }
+
+/*------------------------------------------------ REVIEWS -----------------------------------------------------------*/
+
+add_action( 'init', 'myCustomInitReviews' );
+
+function myCustomInitReviews() {
+    $labels = array(
+        'name'               => 'Отзывы', // Основное название типа записи
+        'singular_name'      => 'Отзывы', // отдельное название записи типа Book
+        'add_new'            => 'Добавить отзыв',
+        'add_new_item'       => 'Добавить новый отзыв',
+        'edit_item'          => 'Редактировать отзыв',
+        'new_item'           => 'Новый отзыв',
+        'view_item'          => 'Посмотреть отзыв',
+        'search_items'       => 'Найти отзыв',
+        'not_found'          => 'Отзывов не найдено',
+        'not_found_in_trash' => 'В корзине отзывов не найдено',
+        'parent_item_colon'  => '',
+        'menu_name'          => 'Отзывы'
+
+    );
+    $args   = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => true,
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array()
+    );
+    register_post_type( 'reviews', $args );
+}
+
+function reviewShortcode() {
+    $args = array(
+        'post_type'      => 'reviews',
+        'post_status'    => 'publish',
+        'posts_per_page' => - 1
+    );
+
+    $my_query = null;
+    $my_query = new WP_Query( $args );
+
+    $parser = new Parser();
+    $parser->render( TM_DIR . '/view/reviews.php', [ 'my_query' => $my_query ] );
+}
+
+add_shortcode( 'reviews', 'reviewShortcode' );
+
+add_action( 'save_post', 'myExtraFieldsUpdate', 10, 1 );
+
+/* Сохраняем данные, при сохранении поста */
+function myExtraFieldsUpdate( $post_id ) {
+    if ( ! isset( $_POST['extra'] ) ) {
+        return false;
+    }
+    foreach ( $_POST['extra'] as $key => $value ) {
+        if ( empty( $value ) ) {
+            delete_post_meta( $post_id, $key ); // удаляем поле если значение пустое
+            continue;
+        }
+
+        update_post_meta( $post_id, $key, $value ); // add_post_meta() работает автоматически
+    }
+
+    return $post_id;
+}
+
+function extraFieldsPlace( $post ) {
+    ?>
+    <p>
+        <span>Embed-ссылка на видео: </span>
+        <input type="text" name='extra[place]' value="<?php echo get_post_meta( $post->ID, "place", 1 ); ?>">
+    </p>
+    <?php
+}
+
+function myExtraFieldsMenu() {
+    add_meta_box( 'extra_place', 'Видео', 'extraFieldsPlace', 'reviews', 'normal', 'high' );
+}
+
+add_action( 'add_meta_boxes', 'myExtraFieldsMenu', 1 );
+
+/*----------------------------------------------- END REVIEWS --------------------------------------------------------*/
