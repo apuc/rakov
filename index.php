@@ -18,7 +18,6 @@
     			<li><a href="#go_materials" class="smoothScroll">бесплатные материалы</a></li>
     			<li><a href="#go_contacts" class="smoothScroll">КОНТАКТЫ</a></li>    			
     		</ul>
-			<a href="/search/" class="button-search"></a>
     	</nav>
     </header>
                               
@@ -159,21 +158,14 @@
         </div>
     </section>
 
-    <section class="store">
-        <a id="go_store"></a>
-        <div class="contain">
-            <div class="store__arrow"></div>
-            <h1 class="block_title">магазин</h1>
-            <?= do_shortcode('[store]');?>
-        </div>
-    </section>
-
     <section class="materials">
         <a id="go_materials"></a>
         <div class="contain">
         <h1 class="block_title">бесплатные материалы</h1>
-        <h2 class="block_descript">(материалы в помощь)</h2>
-            <?= do_shortcode('[free_book]');?>
+            <!--            <h2 class="block_descript"> </h2>-->
+            <div class="store__flex">
+                <?= do_shortcode( '[free_book]' ); ?>
+            </div>
         </div>
     </section>
 
@@ -211,6 +203,7 @@
 
                 <div class="row">
                     <p class="phone_number"><?php echo get_theme_mod('phone_textbox'); ?></p>
+                    <p class="phone_number"><?php echo get_theme_mod( 'watsup_textbox' ); ?></p>
                     <p class="email_adress"><?php echo get_theme_mod('email_textbox'); ?></p>
                 </div>
 
@@ -293,16 +286,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        addLoadEvent = function(func){if(typeof jQuery!="undefined")jQuery(document).ready(func);else if(typeof wpOnload!='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}};
-        var ajaxurl = '/wp-admin/admin-ajax.php',
-            pagenow = 'toplevel_page_mainpage',
-            typenow = '',
-            adminpage = 'toplevel_page_mainpage',
-            thousandsSeparator = ' ',
-            decimalPoint = ',',
-            isRtl = 0;
-    </script>
 <?php wp_footer(); ?>
 <?= do_shortcode('[to_scroll]'); ?>
 </body>
